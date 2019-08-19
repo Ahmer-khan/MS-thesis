@@ -4,15 +4,15 @@ import time
 from datetime import datetime,date
 import numpy as np
 influential_users = []
-for (path,dir,file) in os.walk('influential_user_follower') :
+for (path,dir,file) in os.walk(#path) :
     influential_users.extend(dir)
     break
 for user in influential_users:
-    if os.path.isfile(path + '/' + user + '/final.csv'):
+    if os.path.isfile(#path):
         continue
     print("---------------------------------------------------")
     print('working on followers of:', user.split("_")[1])
-    follower = pd.read_csv(path + "/" + user + '/followers.csv',sep=',',low_memory=False)
+    follower = pd.read_csv(#path)
     follower = follower.replace(to_replace=['True','False'],value=[1,0])
     follower = follower.replace(to_replace=[True,False],value=[1,0])
     #follower[['default_profile','default_profile_image','verified']] = follower[['default_profile','default_profile_image','verified']].astype(int)
@@ -75,10 +75,10 @@ for user in influential_users:
         name = str(row['name']).replace('/','_')
         #name = name.replace('.','')
         try:
-            temp = pd.read_csv(path + "/" + user +'/followers_timeline/' + name + '.csv',sep=',',usecols=['text','created_at'],engine='python')
+            temp = pd.read_csv(#path)
             temp['created_at'] = pd.to_datetime(temp['created_at'])
         except ValueError:
-            temp = pd.read_csv(path + "/" + user +'/followers_timeline/' + name + '.csv',sep=',',header=None,names=['id','created_at','text','original_user'],engine='python')
+            temp = pd.read_csv(#path)
             temp = temp[['created_at','text']]
             temp['created_at'] = pd.to_datetime(temp['created_at'])
         except FileNotFoundError:
@@ -146,5 +146,5 @@ for user in influential_users:
     tweet_dataframe = tweet_dataframe.transpose()
     tweet_dataframe.index.name = 'id'
     follower = follower.merge(tweet_dataframe,how='outer',left_on='id',right_index=True)
-    follower.to_csv(path + "/" + user + '/final.csv',index=False)
+    follower.to_csv(#path)
 print('completed')
