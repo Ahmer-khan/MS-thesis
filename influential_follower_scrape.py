@@ -4,14 +4,14 @@ import time
 import csv
 from datetime import datetime
 import pandas as pd
-API_Key = "graMtDf92vK3QhS34S8CCOlmH"
-API_Secret = "HDt6GZfUhEulRHgGWb12STILVEjHIPafHOYd6qGO0cAIJgxK8D"
-Access_Token = "746410136831299584-MxszeTHoKsdTpkM4ESnCHExHs0Lu4WX"
-Access_Token_Secret = "DlzjrLrlNjjTSMci9DmzaLAHmxXL20xTYfxHDC6u26aTm"
+API_Key = ""
+API_Secret = ""
+Access_Token = ""
+Access_Token_Secret = ""
 twitter_final = Twython(API_Key, API_Secret,
                   Access_Token, Access_Token_Secret)
 influential_users = []
-for (path,dir,file) in os.walk('influential_user_follower') :
+for (path,dir,file) in os.walk('path to directory') :
     influential_users.extend(dir)
     break
 for i in range(0,2):
