@@ -3,27 +3,27 @@ import os
 import time
 import csv
 from datetime import datetime
-API_Key = "bUHaORqxHWWYB00ob19aJburI"
-API_Secret = "XvUe45SgruurxVS4xq9ZwWOYTmNCFikfkfrehjVeaqaHsuR2Ru"
-Access_Token = "746410136831299584-8HILD7A39eLF6Qfx9OuAdzmTgBQSTjl"
-Access_Token_Secret = "IodX5ElyrZz8tcKrZhM2roTEz34bQ4NOQrToHJ7TbSF1M"
+API_Key = ""
+API_Secret = ""
+Access_Token = ""
+Access_Token_Secret = ""
 twitter_final = Twython(API_Key, API_Secret,
                   Access_Token, Access_Token_Secret)
 trends = []
 path = ""
-for (path,dir,file) in os.walk("top_30"):
+for (path,dir,file) in os.walk(#path):
     trends.extend(dir)
     break
 for q in range(0,6):
     print("---------------------------------------------------")
     print("starting for trends[q]:",trend)
     users = []
-    if not os.path.exists(path + '/' +  trends[q] + '/tweeters'):
-	    os.mkdir(path + '/' +  trends[q] + '/tweeters')
-    f = open(path + "/" + trends[q] + "/unique_tweeters.txt",'r')
+    if not os.path.exists(#path):
+	    os.mkdir(#path)
+    f = open(#path)
     users = f.readlines()
     try:
-        with open(path + "/" + trends[q] + "/tweeters/user_done.txt","r") as f1:
+        with open(#path) as f1:
             user_done = f1.readlines()
             f1.close()
     except FileNotFoundError:
@@ -38,12 +38,12 @@ for q in range(0,6):
         print('***************************')
         print("Scraping user:",str(i+1) + "/" + str(len(users)))
         username = users[i]
-        if not os.path.exists(path + "/" + trends[q] + "/tweeters/followers_timeline"):
-            os.mkdir(path + "/" + trends[q] + "/tweeters/followers_timeline")
+        if not os.path.exists(#path):
+            os.mkdir(#path)
 	    alltweets = []
         new_tweets = []
         try:
-		    with open(path + "/" + trends[q] + "/tweeters/followers_timeline/" + username + '.csv',"r") as re:
+		    with open(#path) as re:
                 rows = csv.reader(re,delimiter=',', quotechar=',',quoting=csv.QUOTE_MINIMAL)
                 for row in rows:
                     new_tweets.append(row)
@@ -70,11 +70,11 @@ for q in range(0,6):
             except TwythonError as e:
                 if e.error_code != 503 and e.error_code != 500:
                     try:
-                        with open(path + "/" + trends[q] + "/tweeters/user_done.txt","a") as fp :
+                        with open(#path) as fp :
                             print(username,file=fp)
                             fp.close()
                     except FileNotFoundError:
-                        with open(path + "/" + trends[q] + "/tweeters/user_done.txt","w") as fp :
+                        with open(#path) as fp :
                             print(username,file=fp)
                             fp.close()
                     continue
@@ -135,18 +135,18 @@ for q in range(0,6):
             outtweets = [[tweet['id_str'], tweet['created_at'], tweet['text'].encode("utf-8"),tweet["user"]["screen_name"]]
                         for tweet in alltweets]
         try:
-            ap = open(path + "/" + trends[q] + "/tweeters/" + users[i] + "/user_timeline.csv","a",newline='')
+            ap = open(#path)
             writer = csv.writer(ap)
             writer.writerows(outtweets)
             ap.close()
         except FileNotFoundError:
-            with open(path + "/" + trends[q] + "/tweeters/followers_timeline/" + username + '.csv',"w",newline='') as ap:
+            with open(#path, 'w') as ap:
                 writer = csv.writer(ap)
                 writer.writerows(["id","created_at","text","original_user"])
                 writer.writerows(outtweets)
                 ap.close()
         try:
-            with open(path + "/" + trends[q] + "/tweeters/user_done.txt","a") as fp :
+            with open(#path,"a") as fp :
                 print(username,file=fp)
                 fp.close()
         except FileNotFoundError:
