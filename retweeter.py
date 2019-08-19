@@ -5,17 +5,17 @@ import ast
 import json
 from datetime import datetime,date
 trends = []
-for (path,dir,file) in os.walk('top_30') :
+for (path,dir,file) in os.walk(#path) :
     trends.extend(dir)
     break
 for trend in trends:
     last_final = pd.DataFrame()
-    if os.path.isfile(path + '/' + trend + '/retweeters_final.csv'):
+    if os.path.isfile(#path):
         continue
     print("---------------------------------------------------")
     print('working on retweeters of:', trend)
     retweeters = []
-    for(add,fol,files) in os.walk(path + '/' + trend + '/retweeters'):
+    for(add,fol,files) in os.walk(#path):
         retweeters.extend(fol)
         break
     i = 1
@@ -25,15 +25,15 @@ for trend in trends:
         print('processing retweeter: ' + str(i) + '/' + str(len(retweeters)))
         print(retweeter)
         i += 1
-        if os.path.isfile(add + '/' + retweeter + '/final.csv'):
-            ser = pd.Series.from_csv(add + '/' + retweeter + '/final.csv',sep=',')
+        if os.path.isfile(#path):
+            ser = pd.Series.from_csv(#path)
             frame = ser.to_frame()
             frame = frame.transpose()
             last_final = last_final.append(frame)
             continue
         final_dict = {}
         try:
-            with open(add + '/' + retweeter + '/user_profile_info.txt','r') as f:
+            with open(#path) as f:
                 for line in f:
                     line = line.replace('\n','')
                     line = line.replace('"','')
@@ -58,17 +58,17 @@ for trend in trends:
         previous_retweet = 0
         previous_tweet = 0
         try:
-            temp = pd.read_csv(add + '/' + retweeter + '/user_timeline.csv',sep=',',usecols=['text','created_at'],engine='python')
+            temp = pd.read_csv(#path)
             temp['created_at'] = pd.to_datetime(temp['created_at'])
         except ValueError:
-            temp = pd.read_csv(add + '/' + retweeter + '/user_timeline.csv',sep=',',header=None,names=['id','created_at','text','original_user'],engine='python')
+            temp = pd.read_csv(#path)
             temp = temp[['created_at','text']]
             temp['created_at'] = pd.to_datetime(temp['created_at'])
         except FileNotFoundError:
             continue
         except:
             try:
-                temp = pd.read_csv(add + '/' + retweeter + '/user_timeline.csv',sep=',',engine='python')
+                temp = pd.read_csv(#path)
                 temp = temp.rename(columns={ temp.columns[1]: "created_at",temp.columns[2]:"text" })
                 temp = temp[:,1:3]
                 temp['created_at'] = pd.to_datetime(temp['created_at'])
@@ -181,5 +181,5 @@ for trend in trends:
     last_final['digits_in_name'] = digits
     last_final["description_length"] = lengths_des
     last_final["contains_words"] = words
-    last_final.to_csv(path + '/' + trend + '/retweeters_final.csv',index=False)
+    last_final.to_csv(#path)
 print("completed")
