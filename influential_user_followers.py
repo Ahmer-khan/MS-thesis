@@ -1,13 +1,13 @@
 from twython import Twython, TwythonRateLimitError, TwythonError
 import pandas as pd
 import os,time
-API_Key = "graMtDf92vK3QhS34S8CCOlmH"
-API_Secret = "HDt6GZfUhEulRHgGWb12STILVEjHIPafHOYd6qGO0cAIJgxK8D"
-Access_Token = "746410136831299584-MxszeTHoKsdTpkM4ESnCHExHs0Lu4WX"
-Access_Token_Secret = "DlzjrLrlNjjTSMci9DmzaLAHmxXL20xTYfxHDC6u26aTm"
+API_Key = ""
+API_Secret = ""
+Access_Token = ""
+Access_Token_Secret = ""
 twitter_final = Twython(API_Key, API_Secret,
                   Access_Token, Access_Token_Secret)
-influential_user_list = pd.read_csv('influential_user_list.csv',sep=',')
+influential_user_list = pd.read_csv('path to file',sep=',')
 influential_user_list = influential_user_list[0:5]
 for index,row in influential_user_list.iterrows():
     row['name'] = row['name'].replace("b'","")
@@ -20,7 +20,7 @@ for index,row in influential_user_list.iterrows():
         print('Scraping followers of:', row['name'],)
         next_cursor = -1
         followers_list = []
-        while len(followers_list) != 30000 :
+        while len(followers_list) != #desired condition :
             try:
                 followers_element = twitter_final.get_followers_list(screen_name = row['user_name'], cursor = next_cursor,count = 200,
                                                                   skip_status = 1)
@@ -39,7 +39,7 @@ for index,row in influential_user_list.iterrows():
                     twitter_final = Twython(API_Key, API_Secret,Access_Token, Access_Token_Secret)
                 continue
         followers = pd.DataFrame.from_dict(followers_list)
-        os.mkdir('influential_user_follower/'+ str(row['Rank']) + "_" + row['name'])
-        followers.to_csv('influential_user_follower/'+ str(row['Rank']) + "_" + row['name'] + "/followers.csv")
+        os.mkdir(#path to directory)
+        followers.to_csv(#path to file)
         print("---------------------------------------------------")
 print('completed')
