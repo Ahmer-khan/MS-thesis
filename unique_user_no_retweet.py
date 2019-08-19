@@ -2,13 +2,13 @@ import os
 import ast
 trends = []
 path = ""
-for(path, dir, files) in os.walk("second_half_political"):
+for(path, dir, files) in os.walk(#path):
     trends.extend(dir)
     break
 for i in range(0,len(trends)):
         print("---------------------------------------------------")
         print("Starting for trend : ", trends[i])
-        tweets = open(path + "/" + trends[i] + "/tweets_list.txt","r")
+        tweets = open(#path ,"r")
         list_tweet_dict = []
         for tweet in tweets:
             tweet_dict = {}
@@ -34,8 +34,8 @@ for i in range(0,len(trends)):
         total_to_be_processed = len(count_retweets)
         print("Total Tweets : ", total_to_be_processed)
         tweets.close()
-        tweets = open(path + "/" + trends[i] + "/tweets_list.txt","r")
-        user_file = open(path + "/" + trends[i] + "/user_no_retweet.txt", 'r')
+        tweets = open(#path,"r")
+        user_file = open(#path, 'r')
         total_done = len(user_file.readlines())
         user_list = []
         for user in user_file :
@@ -43,7 +43,7 @@ for i in range(0,len(trends)):
             user_list.append(user)
             print(user_list)
         user_file.close()
-        user_file = open(path + "/" + trends[i] + "/user_no_retweet.txt", 'a')
+        user_file = open(#path, 'a')
         print("Total user found", total_done)
         line_no_for_tweets = 0
         for line in count_retweets:
