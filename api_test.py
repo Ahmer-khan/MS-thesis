@@ -3,15 +3,15 @@ import os
 import time
 import ast
 import json
-API_Key = "XAcYNqLwHyhSvXrXBBjNH28Yc"
-API_Secret = "Ji7tRpBT73peMSGrBYkOqAvxGCcu5KqM5pjtBFE9ywysbAiX0n"
-Access_Token = "307878227-5O8g0wQTxjS6E647rsYNKSvhr21jK7T2mxCKnscr"
-Access_Token_Secret = "gIAKx7YR2q1Srbxk8cgNejfweVsepDHZZUhXJB1MlZAdi"
+API_Key = ""
+API_Secret = ""
+Access_Token = ""
+Access_Token_Secret = ""
 twitter_final = Twython(API_Key, API_Secret,
                   Access_Token, Access_Token_Secret)
 trends = []
 path = ""
-for(path, dir, files) in os.walk("first half"):
+for(path, dir, files) in os.walk("path to directory"):
     trends.extend(dir)
     break
 stop = len(trends)//2 + 1
