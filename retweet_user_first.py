@@ -2,15 +2,15 @@ from twython import Twython, TwythonRateLimitError, TwythonError
 import os
 import time
 import json
-API_Key = "XAcYNqLwHyhSvXrXBBjNH28Yc"
-API_Secret = "Ji7tRpBT73peMSGrBYkOqAvxGCcu5KqM5pjtBFE9ywysbAiX0n"
-Access_Token = "307878227-5O8g0wQTxjS6E647rsYNKSvhr21jK7T2mxCKnscr"
-Access_Token_Secret = "gIAKx7YR2q1Srbxk8cgNejfweVsepDHZZUhXJB1MlZAdi"
+API_Key = ""
+API_Secret = ""
+Access_Token = ""
+Access_Token_Secret = ""
 twitter_final = Twython(API_Key, API_Secret,
                   Access_Token, Access_Token_Secret)
 trends = []
 path = ""
-for(path, dir, files) in os.walk("first half"):
+for(path, dir, files) in os.walk(#path):
     trends.extend(dir)
     break
 stop = len(trends)//2 + 1
@@ -19,16 +19,16 @@ for i in range(0,stop):
         print("---------------------------------------------------")
         print("Starting for trend : ", trend)
         try:
-            users = open(path +"/" + trend + "/unique_retweeters.txt", "r")
+            users = open(#path)
             total_to_be_processed = len(users.readlines())
             print("Total Users : ", total_to_be_processed)
             users.close()
-            users = open(path +"/" + trend + "/unique_retweeters.txt", "r")
-            if not os.path.exists(path +"/" + trend + '/retweeters'):
-                os.makedirs(path +"/" + trend + '/retweeters')
+            users = open(#path)
+            if not os.path.exists(#path):
+                os.makedirs(#path)
             users_list = []
             try:
-                for (dirpath, dirnames, filenames) in os.walk(path +"/" + trend + '/retweeters'):
+                for (dirpath, dirnames, filenames) in os.walk(#path):
                     users_list.extend(dirnames)
                     break
                 test = []
@@ -45,9 +45,9 @@ for i in range(0,stop):
                 username = username_list[i].replace("\n","")
                 try:
                      user_element = twitter_final.show_user(user_id= username)
-                     if not os.path.exists(path +"/" + trend + '/retweeters/' + str(i) + "_" + user_element["screen_name"]):
-                        os.makedirs(path +"/" + trend + '/retweeters/' + str(i) + "_" + user_element["screen_name"])
-                     with open(path +"/" + trend + '/retweeters/' + str(i) + "_" + user_element["screen_name"] + '/user_profile_info.txt', 'w') as file:
+                     if not os.path.exists(#path):
+                        os.makedirs(#path)
+                     with open(#path) as file:
                         file.write(json.dumps(user_element))
                         print("information for user: " + username + " gathered")
                      file.close()
@@ -64,9 +64,9 @@ for i in range(0,stop):
                     continue
                 except TwythonError as e:
                     if e.error_code == 403:
-                        if not os.path.exists(path +"/" + trend + '/retweeters/' + str(i) + "_" + username):
-                            os.makedirs(path +"/" + trend + '/retweeters/' + str(i) + "_" + username)
-                        with open(path +"/" + trend + '/retweeters/' + str(i) + "_" + username + "/No_such_user.txt", 'w') as file:
+                        if not os.path.exists(#path):
+                            os.makedirs(#path)
+                        with open(#path) as file:
                             file.close()
                         print("no such user")
                         continue
