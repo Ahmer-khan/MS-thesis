@@ -2,13 +2,13 @@ import os
 import ast
 trends = []
 path = ""
-for(path, dir, files) in os.walk("test"):
+for(path, dir, files) in os.walk(#path):
     trends.extend(dir)
     break
 for trend in trends:
         print("---------")
         print("starting for trend:",trend)
-        tweets = open(path + "/" + trend + "/retweets.txt","r")
+        tweets = open(#path,"r")
         tweeters_list = []
         for tweet in tweets:
             try:
@@ -16,7 +16,7 @@ for trend in trends:
                 tweeter = tweet_dict["user"]
                 if not tweeter in tweeters_list :
                     tweeters_list.append(tweeter)
-                    with open(path + "/" + trend + "/unique_tweeters.txt","a") as f:
+                    with open(#path,"a") as f:
                         print(tweeter, file=f)
                         f.close()
             except SyntaxError:
@@ -29,7 +29,7 @@ for trend in trends:
                         tweeter = tweet_dict["user"]
                         if not tweeter in tweeters_list :
                             tweeters_list.append(tweeter)
-                            with open(path + "/" + trend + "/unique_tweeters.txt","a") as f:
+                            with open(#path,"a") as f:
                                 print(tweeter, file=f)
                                 f.close()
                         counter = index + 1 + counter
