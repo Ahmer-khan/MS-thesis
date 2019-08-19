@@ -1,12 +1,12 @@
 from bs4 import BeautifulSoup
 import requests
 import csv
-with open("influential_user_list.csv","w",newline='') as f:
+with open("path to file","w",newline='') as f:
     writer = csv.writer(f)
     writer.writerow(["Rank","name","user_name"])
     f.close()
-for i in range (1,47,5):
-    url = "https://www.socialbakers.com/statistics/twitter/profiles/pakistan/page-" + str(i) + "-" + str(i +4)+"/"
+for i in range (#desired range):
+    url = ""                    #url of the website. we used social bakers
     page = requests.get(url).text
     parsed = BeautifulSoup(page,'lxml')
     table = parsed.find("div",class_ = "brand-table-placeholder")
