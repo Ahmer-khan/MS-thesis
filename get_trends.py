@@ -50,9 +50,9 @@ def output2file(trends):
 
 
 # Intialization
-start_date = '2015-04-01'	# Date the website started to store information
-end_date = '2017-10-07'		# Date when the scraping was done
-country_id = '23424922'	# Id for Pakistan
+start_date = ''		# Date the website started to store information
+end_date = ''		# Date when the scraping was done
+country_id = ''		# Id for desired country
 url = "https://trendogate.com/placebydate/%s/" % country_id
 
 # Get Dates
