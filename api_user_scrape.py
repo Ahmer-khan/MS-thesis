@@ -3,15 +3,15 @@ import os
 import time
 import csv
 from datetime import datetime
-API_Key = "q9fR004pShLQg39uGKM10NEhW"
-API_Secret = "oHE3g6XVflASZBwk8T9XulxDYWCb9VXBII64g0yEoKX0TzmKwE"
-Access_Token = "1539432170-KCcGaltseUMEfJjbRJvSj0IGcohT0SK3i10h6id"
-Access_Token_Secret = "wzhSxH7EJUg7WGJzbsAQfWk31dx78MfF2ZpixltqNCE8M"
+API_Key = ""
+API_Secret = ""
+Access_Token = ""
+Access_Token_Secret = ""
 twitter_final = Twython(API_Key, API_Secret,
                   Access_Token, Access_Token_Secret)
 trends = []
 path = ""
-for (path,dir,file) in os.walk("top_30"):
+for (path,dir,file) in os.walk("path to directory"):
     trends.extend(dir)
     break
 for q in range(0,6):
@@ -93,7 +93,7 @@ for q in range(0,6):
                 ts = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime(alltweets[-1]["created_at"],'%a %b %d %H:%M:%S +0000 %Y'))
                 print ("...%s tweets downloaded so far" % (total))
             ts = datetime.strptime(ts,'%Y-%m-%d %H:%M:%S')
-            stop_date = datetime.strptime('2017-01-01','%Y-%m-%d')
+            stop_date = datetime.strptime('desired date','%Y-%m-%d')
             while ts.year >= stop_date.year and len(new_tweets) > 0:
                     del new_tweets [:]
                     print("getting tweets before %s" % (oldest))
